@@ -66,9 +66,8 @@ export const TestConfig: React.FC = () => {
     setError('');
     
     try {
-      // This will be implemented in next commit
-      console.log('Starting test with config:', config);
-      alert('Test execution will be implemented in next commit');
+      const response = await apiClient.post('/tests/start', config);
+      navigate(`/progress/${response.test_id}`);
     } catch (error: any) {
       setError(error.message || 'Failed to start test');
     }

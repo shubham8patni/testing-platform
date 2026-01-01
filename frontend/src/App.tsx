@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Welcome } from './components/Welcome';
 import { TestConfig } from './components/TestConfig';
 import { TestProgress } from './components/TestProgress';
+import { PlanDetails } from './components/PlanDetails';
+import { ResultsView } from './components/ResultsView';
 import './App.css';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
               <Route path="/" element={<Welcome />} />
               <Route path="/config" element={<TestConfig />} />
               <Route path="/progress/:testId" element={<TestProgress />} />
+              <Route path="/progress/:testId/plan/:planKey" element={<PlanDetails />} />
+              <Route path="/results/:testId" element={<ResultsView />} />
             </Routes>
           </main>
         </div>
