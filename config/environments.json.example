@@ -1,0 +1,28 @@
+{
+  "environments": {
+    "dev": {
+      "name": "Development Environment",
+      "base_url": "https://api-dev.example.com",
+      "auth": {
+        "type": "bearer",
+        "token_field": "dev_token"
+      }
+    },
+    "qa": {
+      "name": "Quality Assurance Environment",
+      "base_url": "https://api-qa.example.com",
+      "auth": {
+        "type": "bearer",
+        "token_field": "qa_token"
+      }
+    },
+    "stage": {
+      "name": "Staging Environment", 
+      "base_url": "https://api-stage.example.com",
+      "auth": {
+        "type": "bearer",
+        "token_field": "stage_token"
+      }
+    }
+  }
+}

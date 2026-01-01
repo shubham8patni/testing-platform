@@ -1,0 +1,86 @@
+{
+  "categories": {
+    "car": {
+      "name": "Car Insurance",
+      "display_order": 1,
+      "products": {
+        "zurich_autocillin_mv4": {
+          "id": "askd3ryr3fy9fhf32ru3u4",
+          "name": "Zurich Autocillin MV4",
+          "plans": {
+            "tlo": {
+              "id": "dkhfweury2398u2",
+              "name": "TLO Plan",
+              "test_sequence": ["application", "payment", "policy"]
+            },
+            "comprehensive": {
+              "id": "ahsbciuwdh3u2093u209",
+              "name": "Comprehensive Plan",
+              "test_sequence": ["application", "payment", "policy", "verification"]
+            }
+          }
+        },
+        "oona_mv4": {
+          "id": "adkhasfjh238t4823423492",
+          "name": "Oona MV4",
+          "plans": {
+            "basic": {
+              "id": "plan_oona_basic_id",
+              "name": "Basic Plan",
+              "test_sequence": ["application", "payment", "policy"]
+            },
+            "premium": {
+              "id": "plan_oona_premium_id",
+              "name": "Premium Plan",
+              "test_sequence": ["application", "payment", "policy", "verification"]
+            }
+          }
+        }
+      }
+    },
+    "travel": {
+      "name": "Travel Insurance",
+      "display_order": 2,
+      "products": {
+        "international": {
+          "id": "product_international_id",
+          "name": "International Travel",
+          "plans": {
+            "single_trip": {
+              "id": "plan_single_trip_id",
+              "name": "Single Trip Coverage",
+              "test_sequence": ["application", "payment", "policy"]
+            },
+            "annual": {
+              "id": "plan_annual_id",
+              "name": "Annual Coverage",
+              "test_sequence": ["application", "payment", "policy", "verification"]
+            }
+          }
+        }
+      }
+    },
+    "health": {
+      "name": "Health Insurance",
+      "display_order": 3,
+      "products": {
+        "family": {
+          "id": "product_family_id",
+          "name": "Family Health Plan",
+          "plans": {
+            "hmo": {
+              "id": "plan_hmo_id",
+              "name": "HMO Plan",
+              "test_sequence": ["application", "payment", "policy", "verification"]
+            },
+            "ppo": {
+              "id": "plan_ppo_id",
+              "name": "PPO Plan",
+              "test_sequence": ["application", "payment", "policy", "verification"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
