@@ -43,6 +43,10 @@ Welcome to the Insurance Testing Platform documentation. This is a comprehensive
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Production deployment guide
 - **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues and solutions
 
+### 👥 Community & Contributing
+- **[USER_GUIDE.md](./USER_GUIDE.md)** - Complete user manual and platform guide
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Development contribution guidelines
+
 ## 🚀 Quick Start
 
 ### Immediate Actions Required
