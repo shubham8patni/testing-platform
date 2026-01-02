@@ -53,10 +53,37 @@ export const ResultsView: React.FC = () => {
       setLoading(true);
       const testResult = await apiClient.get(`/results/${testId}`);
       setResult(testResult);
+      
+      // Load AI analysis if test is completed
+      if (testResult.test_metadata.status === 'completed') {
+        loadAIAnalysis(testResult);
+      }
     } catch (error: any) {
       setError(error.message || 'Failed to load test results');
     }
     setLoading(false);
+  };
+
+  const loadAIAnalysis = async (testResult: TestResult) => {
+    try {
+      setAILoading(true);
+      const analysis = await apiClient.post('/ai/analyze-differences', {
+        expected: testResult.plan_results || {},
+        actual: testResult.plan_results || {}, // Use same data for demo
+        custom_prompt: testResult.test_metadata?.ai_prompt || 'Standard analysis'
+      });
+      setAIAnalysis(analysis);
+    } catch (error: any) {
+      console.error('AI analysis failed:', error);
+      setAIAnalysis({
+        differences: [],
+        summary: 'AI analysis unavailable',
+        recommendations: [],
+        model_used: 'none',
+        confidence: 'low'
+      });
+    }
+    setAILoading(false);
   };
 
   const getStatusColor = (status: string) => {
@@ -64,6 +91,15 @@ export const ResultsView: React.FC = () => {
       case 'completed': return '#28a745';
       case 'failed': return '#dc3545';
       case 'running': return '#17a2b8';
+      default: return '#6c757d';
+    }
+  };
+
+  const getConfidenceColor = (confidence: string) => {
+    switch (confidence) {
+      case 'high': return '#28a745';
+      case 'medium': return '#ffc107';
+      case 'low': return '#6c757d';
       default: return '#6c757d';
     }
   };
@@ -200,6 +236,84 @@ export const ResultsView: React.FC = () => {
         ))}
       </div>
 
+      {/* AI Analysis Section */}
+      {result.test_metadata.status === 'completed' && (
+        <div className="ai-analysis">
+          <h3>AI Analysis</h3>
+          {aiLoading ? (
+            <div className="ai-loading">
+              <span>🤖 Analyzing differences with AI...</span>
+            </div>
+          ) : aiAnalysis ? (
+            <div className="ai-results">
+              <div className="ai-summary">
+                <h4>Summary</h4>
+                <p>{aiAnalysis.summary}</p>
+                <div className="ai-confidence">
+                  <span>Model: {aiAnalysis.model_used}</span>
+                  <span 
+                    className="confidence-badge"
+                    style={{ backgroundColor: getConfidenceColor(aiAnalysis.confidence) }}
+                  >
+                    {aiAnalysis.confidence} confidence
+                  </span>
+                </div>
+              </div>
+              
+              {aiAnalysis.differences.length > 0 && (
+                <div className="differences-section">
+                  <h4>Differences Found</h4>
+                  <div className="differences-list">
+                    {aiAnalysis.differences.map((diff, index) => (
+                      <div key={index} className="difference-item">
+                        <span className={`diff-severity ${diff.severity}`}>
+                          {diff.field}
+                        </span>
+                        <div className="diff-details">
+                          {diff.type === 'value_mismatch' && (
+                            <div>
+                              <p><strong>Expected:</strong> {diff.expected}</p>
+                              <p><strong>Actual:</strong> {diff.actual}</p>
+                            </div>
+                          )}
+                          {diff.type === 'missing_field' && (
+                            <div>
+                              <p><strong>Missing Field:</strong> {diff.field}</p>
+                              <p><strong>Expected Value:</strong> {diff.expected}</p>
+                            </div>
+                          )}
+                          {diff.type === 'extra_field' && (
+                            <div>
+                              <p><strong>Extra Field:</strong> {diff.field}</p>
+                              <p><strong>Value:</strong> {diff.value}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {aiAnalysis.recommendations && aiAnalysis.recommendations.length > 0 && (
+                <div className="recommendations-section">
+                  <h4>Recommendations</h4>
+                  <ul>
+                    {aiAnalysis.recommendations.map((rec, index) => (
+                      <li key={index}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="ai-error">
+              <p>AI analysis unavailable. See basic comparison above.</p>
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="actions">
         <button className="btn btn-secondary" onClick={() => navigate('/')}>
           New Test
@@ -207,6 +321,15 @@ export const ResultsView: React.FC = () => {
         <button className="btn btn-primary" onClick={() => window.print()}>
           Print Results
         </button>
+        {result.test_metadata.status === 'completed' && aiAnalysis && (
+          <button 
+            className="btn btn-secondary" 
+            onClick={loadAIAnalysis}
+            disabled={aiLoading}
+          >
+            🔄 Refresh AI Analysis
+          </button>
+        )}
       </div>
     </div>
   );

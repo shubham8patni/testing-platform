@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Setting up Insurance Testing Platform..."
+echo "🚀 Insurance Testing Platform - Complete Setup Script"
 
 # Check if running from correct directory
 if [ ! -f "README.md" ]; then
