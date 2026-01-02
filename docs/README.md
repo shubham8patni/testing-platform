@@ -1,70 +1,102 @@
-# Insurance Testing Platform
+# Insurance Testing Platform - Documentation Hub
 
-A comprehensive template platform for insurance policy purchase testing across multiple environments.
+## 📋 Overview
 
-## 🎯 Purpose
+Welcome to the Insurance Testing Platform documentation. This is a comprehensive system designed for validating insurance policy purchase flows across multiple environments (DEV/QA vs STAGE) with AI-powered analysis and real-time monitoring.
 
-This platform enables insurance companies to test and validate their policy purchase flows across different environments (DEV/QA vs STAGE) with detailed comparison and AI-powered analysis.
+## 🎯 Current Project Status
 
-## ✨ Features
+**Version**: 1.0.0-alpha  
+**Status**: Active Development  
+**Completion**: 65% overall  
 
-- 🔧 **Environment Comparison**: Test policies across DEV/QA vs STAGE environments
-- 📊 **Real-time Progress**: Live test execution tracking with 2-second polling
-- 🤖 **AI Integration**: Hugging Face AI analysis of differences with local fallback
-- 📈 **Plan-level Tracking**: Individual tracking for each insurance plan
-- 🔍 **API Call Inspection**: Detailed view of all API calls and responses
-- 👥 **User Management**: Simple user system with test history
-- 📱 **Responsive UI**: Modern interface that works on desktop and mobile
+### ✅ Completed Components
+- Backend API framework (FastAPI) - 85% complete
+- AI integration service - 90% complete  
+- Configuration management - 95% complete
+- JSON storage system - 75% complete
+- Documentation - 80% complete
 
-## 🏗️ Architecture
+### 🚧 In Progress
+- Real API integration - 60% complete (mock data currently)
+- Frontend React components - 40% complete (components deleted, need recreation)
+- Authentication system - 30% complete
 
-```
-Frontend (React + TypeScript)
-    ↓
-Backend (FastAPI)
-    ↓
-JSON File Storage
-    ↓
-Test Executor Engine
-```
+## 📚 Documentation Structure
 
-### Core Components
+### 🚀 Getting Started
+- **[SETUP.md](./SETUP.md)** - Installation and configuration guide
+- **[DEVELOPMENT.md](./DEVELOPMENT.md)** - Development workflow and guidelines
 
-- **FastAPI Backend**: Async test execution with error handling
-- **React Frontend**: Modern UI with real-time updates
-- **JSON Storage**: File-based persistence for simplicity
-- **AI Service**: Hugging Face integration with local fallback
-- **Mock Engine**: Realistic test simulation for demonstration
+### 🏗 Architecture & Design
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture and design patterns
+- **[PROJECT_STATUS.md](./PROJECT_STATUS.md)** - Current project status and completion matrix
+
+### 📋 Planning & Status
+- **[NEXT_STEPS.md](./NEXT_STEPS.md)** - Development priorities and action items
+- **[TODO.md](./TODO.md)** - Detailed task list and bug tracking
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and release notes
+
+### 🔧 Technical References
+- **[API_REFERENCE.md](./API_REFERENCE.md)** - Complete API documentation
+- **[CONFIGURATION.md](./CONFIGURATION.md)** - Configuration guide for products/environments
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Production deployment guide
+- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues and solutions
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.9+ with pip
-- Node.js 18+ with npm
-- Optional: Hugging Face API token for AI features
+### Immediate Actions Required
 
-### Setup
+⚠️ **Critical Issues to Fix:**
+1. **Missing Dependencies**: Install `huggingface_hub` and other required packages
+2. **Frontend Components**: React components were deleted and need to be recreated
+3. **Real API Integration**: Currently using mock data instead of real insurance APIs
+
+### Basic Setup
 
 ```bash
-# Clone and setup
-git clone https://github.com/YOUR_USERNAME/testing-platform.git
+# Clone repository
+git clone <repository-url>
 cd insurance-testing-platform
-./scripts/setup.sh
+
+# Fix dependencies first!
+cd backend
+pip install -r requirements.txt
+# Add missing huggingface_hub
+pip install huggingface_hub transformers torch
+
+# Frontend setup
+cd ../frontend
+npm install
 
 # Start development servers
-./scripts/run_dev.sh
+cd ../backend && uvicorn app.main:app --reload --port 8000 &
+cd ../frontend && npm start
 
 # Access the platform
 • Frontend: http://localhost:3000
-• Backend API: http://localhost:8000
+• Backend API: http://localhost:8000  
 • API Documentation: http://localhost:8000/docs
 ```
 
-## 📚 Documentation
+## 🏗️ Architecture Overview
 
-- **[SETUP.md](./docs/SETUP.md)**: Detailed installation and configuration guide
-- **[API_REFERENCE.md](./docs/API_REFERENCE.md)**: Complete API documentation
-- **[CONFIGURATION.md](./docs/CONFIGURATION.md)**: Configuration guide for insurance products
+```
+Frontend (React SPA)     ←→   Backend API (FastAPI)   ←→   Storage (JSON Files)
+                              ↓
+                    Test Executor Engine
+                              ↓
+                    AI Service (Cloud + Local)
+                              ↓
+                    External APIs (Target/Stage)
+```
+
+### Core Components Status
+- **Backend API**: ✅ Working with mock data
+- **Test Executor**: ⚠️ Mock implementation, needs real APIs
+- **AI Service**: ✅ Cloud + local fallback working
+- **Frontend**: ⚠️ HTML complete, React components needed
+- **Storage**: ✅ JSON files functional
 
 ## 🔧 Configuration
 
