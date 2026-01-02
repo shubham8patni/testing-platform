@@ -302,12 +302,49 @@ npm start
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📖 How to Use This Documentation
+
+### 🎯 Quick Start Guide
+
+| Who You Are | Where to Start | What to Read Next |
+|-------------|----------------|-------------------|
+| **New Team Member** | [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) | [USER_GUIDE.md](./USER_GUIDE.md) → [ARCHITECTURE.md](./ARCHITECTURE.md) |
+| **Developer** | [PROJECT_STATUS.md](./PROJECT_STATUS.md) | [TODO.md](./TODO.md) → [DEVELOPMENT.md](./DEVELOPMENT.md) |
+| **QA Engineer** | [USER_GUIDE.md](./USER_GUIDE.md) | [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) |
+| **DevOps Engineer** | [DEPLOYMENT.md](./DEPLOYMENT.md) | [CONFIGURATION.md](./CONFIGURATION.md) |
+| **Manager** | [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) | [PROJECT_STATUS.md](./PROJECT_STATUS.md) → [NEXT_STEPS.md](./NEXT_STEPS.md) |
+
+### 📋 Documentation Purpose
+
+| Document | Purpose | When to Read |
+|-----------|-----------|--------------|
+| **PROJECT_SUMMARY.md** | Executive overview & current state (65% complete) | **First** - Understand project quickly |
+| **TODO.md** | Immediate action items & critical bugs | **Urgent** - What needs fixing today |
+| **NEXT_STEPS.md** | Week-by-week development plan | **Planning** - Timeline and priorities |
+| **USER_GUIDE.md** | Complete platform usage manual | **Daily** - How to use the platform |
+| **TROUBLESHOOTING.md** | Common problems & solutions | **When broken** - Fix issues fast |
+| **DEPLOYMENT.md** | Production deployment guide | **When deploying** - Go live safely |
+| **CONTRIBUTING.md** | How to contribute code | **When coding** - Follow standards |
+| **ARCHITECTURE.md** | System design & tech stack | **For developers** - Understand internals |
+
+### 🚀 Need Help Now?
+
+**"I need to fix something critical"** → Read [TODO.md](./TODO.md) (Critical Issues section)
+
+**"I want to understand this project"** → Read [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) (Overview section)
+
+**"I need to use the platform"** → Read [USER_GUIDE.md](./USER_GUIDE.md) (Quick Start section)
+
+**"Something is broken"** → Read [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) (Common Issues section)
+
+**"I need to deploy to production"** → Read [DEPLOYMENT.md](./DEPLOYMENT.md) (Quick Start section)
+
 ## 🆘 Support
 
 For support and questions:
 - Create an issue in the GitHub repository
-- Check the documentation in the `docs/` directory
-- Review the API documentation at `/docs`
+- Check the documentation in `docs/` directory
+- Review API documentation at `/docs`
 
 ---
 
