@@ -1,6 +1,11 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1.api import api_router
+try:
+    from fastapi import FastAPI
+    from fastapi.middleware.cors import CORSMiddleware
+    from app.api.v1.api import api_router
+except ImportError as e:
+    print(f"Missing dependency: {e}")
+    print("Please run: pip install fastapi uvicorn pydantic pydantic-settings aiofiles requests")
+    exit(1)
 
 app = FastAPI(
     title="Insurance Testing Platform",

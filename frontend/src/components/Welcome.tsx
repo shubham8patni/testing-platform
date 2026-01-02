@@ -21,7 +21,7 @@ export const Welcome: React.FC = () => {
     try {
       const user = await apiClient.post('/users', { name });
       localStorage.setItem('user', JSON.stringify(user));
-      navigate('/config');
+      navigate('/dashboard');
     } catch (error: any) {
       setError(error.message || 'Failed to create user');
     }
