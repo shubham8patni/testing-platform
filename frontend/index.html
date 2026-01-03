@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Testing Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app"></div>
+    
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page">
+        <div class="container">
+            <div class="header">
+                <h1>Insurance Testing Platform</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="dashboard">Dashboard</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h2>Welcome to Insurance Testing Platform</h2>
+                    <p class="text-muted">Enter your name to start testing insurance policies across environments</p>
+                    
+                    <form id="welcome-form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label">Your Name</label>
+                                    <input type="text" id="user-name" class="form-control" placeholder="Enter your name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Start Testing
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Configuration Page -->
+    <div id="test-config-page" class="page hidden">
+        <div class="container">
+            <div class="header">
+                <h1>Configure Test</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="welcome">← Welcome</button>
+                    <button class="nav-btn" data-page="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-page="progress">Progress</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h2>Test Configuration</h2>
+                    
+                    <form id="test-config-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Target Environment</label>
+                                    <select id="target-env" class="form-control">
+                                        <option value="dev">Development Environment</option>
+                                        <option value="qa">Quality Assurance</option>
+                                        <option value="stage">Staging Environment</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Baseline Environment</label>
+                                    <select id="baseline-env" class="form-control">
+                                        <option value="dev">Development Environment</option>
+                                        <option value="qa">Quality Assurance</option>
+                                        <option value="stage" selected>Staging Environment</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Test Scope</label>
+                                    <select id="test-scope" class="form-control">
+                                        <option value="all">All Categories</option>
+                                        <option value="category">Specific Category</option>
+                                        <option value="product">Specific Product</option>
+                                        <option value="plan">Specific Plan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">AI Analysis Focus (Optional)</label>
+                                    <input type="text" id="ai-prompt" class="form-control" placeholder="Focus on pricing differences and business logic changes" value="Focus on pricing differences and business logic changes">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Admin Token</label>
+                                    <input type="password" id="admin-token" class="form-control" placeholder="Enter admin portal token" value="demo_token">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Customer Token</label>
+                                    <input type="password" id="customer-token" class="form-control" placeholder="Enter customer portal token" value="demo_token">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 text-center mt-3">
+                                <button type="button" id="new-test-btn" class="btn btn-primary btn-lg">
+                                    Start Test
+                                </button>
+                                <button type="button" class="btn btn-secondary ms-2" data-page="welcome">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page hidden">
+        <div class="container">
+            <div class="header">
+                <h1>Test Dashboard</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="welcome">Welcome</button>
+                    <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-page="config">New Test</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h2>Your Test History</h2>
+                    <div id="user-tests"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Page -->
+    <div id="progress-page" class="page hidden">
+        <div class="container">
+            <div class="header">
+                <h1>Test Progress</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="dashboard">Dashboard</button>
+                    <button class="nav-btn" id="view-results-btn" hidden>View Results</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h3>Test Progress</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Test ID</label>
+                                <div id="test-id-display" class="form-control" readonly></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <div id="test-status-display" class="form-control" readonly></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Overall Progress</label>
+                        <div class="progress">
+                            <div id="overall-progress" class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div id="overall-progress-text" class="text-muted mt-2">0%</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Current Step</label>
+                        <div id="current-step-display" class="form-control" readonly></div>
+                    </div>
+                    
+                    <h4>Plan Progress</h4>
+                    <div id="plans-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="page hidden">
+        <div class="container">
+            <div class="header">
+                <h1>Test Results</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn" data-page="dashboard">← Dashboard</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h2>Test Results</h2>
+                    <div id="results-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Message -->
+    <div id="alert-message" class="alert alert-info hidden"></div>
+
+    <!-- Scripts -->
+    <script src="./js/utils.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
